@@ -20,7 +20,7 @@ int main()
 {
  int itr, maxitr;
  float h, x0, x1, aerr;
- std::cout << "we are trying to approximate the/a root of x*log10(x)-1.2.\n" << 
+ std::cout << "we are trying to approximate the/a root of the function f.\n" << 
  "Enter the first guess(x0), the allowed error, and the maximum allowed number of iterations (press enter between the inputs)" 
  << std::endl;
  std::cin >> x0 >> aerr >> maxitr;//ask for user input
