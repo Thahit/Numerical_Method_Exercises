@@ -7,7 +7,7 @@ void forward_step(Eigen::MatrixXd& matr, int epsilon){
     int max_idx;
     double max_val, factor;
     
-    for(int i = 0; i< matr.rows();i++){
+    for(int i = 0; i< matr.rows(); i++){
         // find the element with the biggest value(only in column no partial pivoting)
         // there is a built in function which does that too, but that would make things to easy
         max_idx = i;
@@ -25,9 +25,9 @@ void forward_step(Eigen::MatrixXd& matr, int epsilon){
         }
         // make the rows below 0
         for(int y = i+1; y< matr.rows();y++){
-            if (abs(matr(y,i))>epsilon){//to avoid some explosions
+            if (abs(matr(y,i)) > epsilon){//to avoid some explosions
                 factor = matr(y,i)/max_val;
-                matr.row(y)-=matr.row(i)*factor;
+                matr.row(y) -= matr.row(i)*factor;
             }
             matr(y,i)=0;
         }
@@ -45,11 +45,11 @@ void backward_step(Eigen::MatrixXd& matr, int epsilon){
         
         for(int y = 0; y < i; y++){
             
-            if(abs(matr(y,i))>epsilon){//to avoid some explosions
+            if(abs(matr(y,i)) > epsilon){//to avoid some explosions
                 factor = matr(y,i)/matr(i,i);
                 matr.row(y)-= factor*matr.row(i);
             }
-            //matr(y,i) = 0;
+            //matr(y,i) = 0; // could do for safety/style, but seems so be good enough
         }
         // make variable 1
         matr.row(i) /= matr(i,i);
@@ -62,8 +62,7 @@ Eigen::MatrixXd gauss_elim(const Eigen::MatrixXd& matr){
     Eigen::MatrixXd out;
     double epsilon = .000001;
     out = matr;
-    std::cout<< "original matrix: "<<std::endl<<
-    matr <<std::endl;
+    std::cout << "original matrix: " << std::endl << matr << std::endl;
 
     forward_step(out, epsilon);
     //std::cout<< "intermediate matrix: "<<std::endl<<out <<std::endl;
