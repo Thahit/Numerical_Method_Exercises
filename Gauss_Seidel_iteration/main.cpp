@@ -11,7 +11,7 @@ void gauss_seidel_it(const Eigen::MatrixXd& matr){
     int max_iter = 10'000;// to avoid long waiting times
 
     epsilon = 1e-10;
-    std::fill(approx, approx+matr.rows(), 0);// fill with 0s
+    std::fill(approx, approx + matr.rows(), 0);// fill with 0s
 
     cout << "original matrix: " << endl << matr << endl;
 
