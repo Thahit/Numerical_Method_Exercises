@@ -1,3 +1,4 @@
+// (find smallest eigenvalue with the inverse power method if needed)
 #include <iostream>
 #include <eigen3/Eigen/Dense>
 
@@ -10,7 +11,6 @@ double power_method(const Eigen::MatrixXd& matr){
     int max_iter = 10'000;
     epsilon = 1e-10;
     guess_value =0;
-    
     guess_vector=Eigen::VectorXd::Ones(matr.cols());// init to zero
 
     for(int iter = 0; iter < max_iter; iter ++){
@@ -23,14 +23,11 @@ double power_method(const Eigen::MatrixXd& matr){
                 factor=stretch[i];
             }
         }
-
         stretch/=factor;
-        //cout << stretch << endl;
-
         
-        if(abs(factor-guess_value)<epsilon){
+        if(abs(factor-guess_value)<epsilon){// early stop
             cout << "number of iterations: " << iter << endl << "eigenvector:" 
-            << endl <<"[" << guess_vector <<"}" << endl 
+            << endl <<"[" << guess_vector <<"]" << endl 
             << "eigenvalue: " << guess_value << endl;
             break;
         }

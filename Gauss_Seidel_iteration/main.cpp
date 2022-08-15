@@ -5,9 +5,11 @@
 using std::cout;
 using std::endl;
 
-void gauss_seidel_it(const Eigen::MatrixXd& matr){
+std::vector<double> gauss_seidel_it(const Eigen::MatrixXd& matr){
     // could also ask useer for epsilon/max iter, but I don't care
     double epsilon, max_error, res, aggr, approx[matr.rows()];
+    std::vector<double> out;
+
     int max_iter = 10'000;// to avoid long waiting times
 
     epsilon = 1e-10;
@@ -44,8 +46,10 @@ void gauss_seidel_it(const Eigen::MatrixXd& matr){
     
     cout << "The values of the variables are:" << endl;
     for(int i = 0; i < matr.rows(); i++){
-        cout << (abs(approx[i]) > epsilon ? approx[i] : 0 ) << endl;
+        out.push_back((abs(approx[i]) > epsilon ? approx[i] : 0 ));
+        cout << out[i] << endl;
     }
+    return out;
 }
 
 int main(){
