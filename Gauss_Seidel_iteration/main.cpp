@@ -62,7 +62,5 @@ int main(){
 
     gauss_seidel_it(m);
 
-
-
     return 0;
 }

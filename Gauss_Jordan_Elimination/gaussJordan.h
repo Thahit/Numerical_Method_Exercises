@@ -1,6 +1,6 @@
 #ifndef GAUSSJORDANELIM_H
 #define GAUSSJORDANELIM_H
-
+// not sure if this is fine like this, but works for mow
 #include <iostream>
 #include <math.h>
 #include <eigen3/Eigen/Dense>
@@ -34,9 +34,7 @@ void forward_step(Eigen::MatrixXd& matr, int epsilon){
             }
             matr(y,i)=0;
         }
-
     }
-
 }
 
 void backward_step(Eigen::MatrixXd& matr, int epsilon){

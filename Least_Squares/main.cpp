@@ -2,7 +2,7 @@
 #include <eigen3/Eigen/Dense>
 #include <tuple>
 #include <math.h>
-#include "gaussJordan.h"
+#include "gaussJordan.h"//for gaussian elimination
 
 using std::cout;
 using std::endl;
@@ -15,7 +15,7 @@ std::tuple<double, double> descent(const Eigen::MatrixXd& matr, const double lr)
     int max_iter = 200'000;
     epsilon = 1e-8;
     
-    for(int iter = 0; iter < max_iter; iter++){
+    for(int iter = 0; iter < max_iter; iter++){//should work
         aError = 0;
         bError = 0;
         for(int i =0; i < matr.rows(); i++){
@@ -23,11 +23,13 @@ std::tuple<double, double> descent(const Eigen::MatrixXd& matr, const double lr)
             aError -= 2*(matr(i,1) - (a*matr(i,0) + b))*matr(i,0);
             bError -= 2*(matr(i,1) - (a*matr(i,0) + b));
         }
+
         aError /= matr.rows();
         bError /= matr.rows();
         aNew -= aError*lr;
         bNew -= bError*lr;
-        cout << "a: " << aNew << "\tb: " << bNew << endl;
+
+        //cout << "a: " << aNew << "\tb: " << bNew << endl;//print iterations
 
         if (abs(aNew - a)<epsilon && abs(bNew - b) < epsilon){//changes small
             cout << "finished iterating" << endl << "number of iterations: " << iter << endl;
@@ -85,10 +87,13 @@ int main(){
         //cout << noise << endl; // print noise
     }
     
-    cout << "data: " << endl << m << endl;
+    //cout << "data: " << endl << m << endl;//print data
 
-    //momentum(m);// result should be about factor and intercept but has noise
+    // result should be about factor and intercept but with noise
+    //momentum(m);
+
     descent(m, 0.0003);
 
+    // maybe should be visualized
     return 0;
 }

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include <eigen3/Eigen/Dense>
-#include "gaussJordan.h"
+#include "gaussJordan.h" // the functions are here
 
 int main(){
     Eigen::Matrix<double, 4, 5> m;
