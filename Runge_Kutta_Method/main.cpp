@@ -1,14 +1,12 @@
-// I will be using a fourth order method
+// I will be using a fourth order RK method
 #include <iostream>
-#include <eigen3/Eigen/Dense>
 
 double df(double x, double y){// write your derivative here
     return x + y*y; // example 1
 }
 
 double RungeKutta4(double x, double y, double target_x, int n, double (*df)(double, double)){
-    double h, predicted_point, eps, k1, k2, k3, k4;
-    eps = 1e-8;
+    double h, k1, k2, k3, k4;
     h = (target_x - x) / n;// step size
 
     for(int i = 1; i <= n; i++){
@@ -30,7 +28,6 @@ int main(){
     // example 1, solution should be about 1.2736
     double x = 0, y = 1, target_x = .2;
     int n = 2;//number of steps or division of range in n parts
-    
     
     double sol = RungeKutta4(x, y, target_x, n,  df);
     std::cout << "the solution at "<< target_x <<" is: " << sol << std::endl;
