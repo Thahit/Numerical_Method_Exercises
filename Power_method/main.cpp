@@ -11,7 +11,7 @@ double power_method(const Eigen::MatrixXd& matr){
     int max_iter = 10'000;
     epsilon = 1e-10;
     guess_value =0;
-    guess_vector=Eigen::VectorXd::Ones(matr.cols());// init to zero
+    guess_vector=Eigen::VectorXd::Ones(matr.cols());// init to 1
 
     for(int iter = 0; iter < max_iter; iter ++){
         stretch = matr*guess_vector;
